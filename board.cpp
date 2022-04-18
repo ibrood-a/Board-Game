@@ -41,6 +41,8 @@ void board::addElements( int puzzleIn ) {
         // push last tile onto stack
         puzzle.push_front( make_pair(curDigit, column) );
         
+        this->thisIndex = currentIndex;
+        
         if (curDigit == 0)
             this->zeroIndex = currentIndex;
         
@@ -80,18 +82,66 @@ bool board::isBoardSolvable() {
     return (calculateInversions() % 2) == 0;
 }
 
-void board::moveUp() {
+bool board::moveUp() {
+    if (zeroIndex <= 2)
+        return false;
     
+    auto temp = puzzle;
+    swap(temp[zeroIndex], temp[zeroIndex - 3]);
+    
+    board* tempBoard = new board(temp, zeroIndex - 3);
+    children.push_back(tempBoard);
+    return true;
 }
 
-void board::moveDown() {
+bool board::moveDown() {
+    if (zeroIndex >= 6)
+        return false;
     
+    auto temp = puzzle;
+    swap(temp[zeroIndex], temp[zeroIndex + 3]);
+    
+    board* tempBoard = new board(temp, zeroIndex + 3);
+    children.push_back(tempBoard);
+    return true;
 }
 
-void board::moveLeft() {
+bool board::moveLeft() {
+    if (zeroIndex % 3 == 0)
+        return false;
     
+    auto temp = puzzle;
+    swap(temp[zeroIndex], temp[zeroIndex - 1]);
+    
+    board* tempBoard = new board(temp, zeroIndex - 1);
+    children.push_back(tempBoard);
+    return true;
 }
 
-void board::moveRight() {
+bool board::moveRight() {
+    if (zeroIndex % 3 >= 2)
+        return false;
     
+    auto temp = puzzle;
+    swap(temp[zeroIndex], temp[zeroIndex + 1]);
+    
+    board* tempBoard = new board(temp, zeroIndex + 1);
+    children.push_back(tempBoard);
+    return true;
+}
+
+void board::validMoves() {
+    if (moveUp())
+        cout << "zero can be moved up" << endl;
+    
+    if (moveRight())
+        cout << "zero can be moved right" << endl;
+    
+    if (moveDown())
+        cout << "zero can be moved down" << endl;
+    
+    if (moveLeft())
+        cout << "zero can be moved left" << endl;
+    
+    cout << endl;
 }

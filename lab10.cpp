@@ -17,8 +17,11 @@ int main( int argc, char** argv ) {
     // debugging purposes
     testBoard.print( );
     
+    testBoard.validMoves();
+    
     if (testBoard.isBoardSolvable())
         cout << "Solvable with " << testBoard.movesToSolve << " moves" << endl;
     else
-        cout << "This board is not solvable" << endl;
+        cout << "This board is not solvable" << endl << endl;
+    
 }
