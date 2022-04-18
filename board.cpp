@@ -7,6 +7,11 @@
 
 #include "board.hpp"
 
+int upMod = -3;
+int downMod = 3;
+int rightMod = 1;
+int leftMod = -1;
+
 void board::print() {
     // loop thru every value in the deque
     for ( auto t : puzzle ) { // loop thru deque
@@ -82,65 +87,48 @@ bool board::isBoardSolvable() {
     return (calculateInversions() % 2) == 0;
 }
 
-bool board::moveUp() {
-    if (zeroIndex <= 2)
-        return false;
+bool board::moveType(int modDistance) {
+    switch (modDistance) {
+        case -3: // up
+            if (zeroIndex <= 2)
+                return false;
+            break;
+            
+        case 3: // down
+            if (zeroIndex >= 6)
+                return false;
+            break;
+            
+        case -1: // left
+            if (zeroIndex % 3 == 0)
+                return false;
+            break;
+            
+        case 1: // right
+            if (zeroIndex % 3 >= 2)
+                return false;
+            break;
+    }
     
     auto temp = puzzle;
-    swap(temp[zeroIndex], temp[zeroIndex - 3]);
+    swap(temp[zeroIndex], temp[zeroIndex + modDistance]);
     
-    board* tempBoard = new board(temp, zeroIndex - 3);
-    children.push_back(tempBoard);
-    return true;
-}
-
-bool board::moveDown() {
-    if (zeroIndex >= 6)
-        return false;
-    
-    auto temp = puzzle;
-    swap(temp[zeroIndex], temp[zeroIndex + 3]);
-    
-    board* tempBoard = new board(temp, zeroIndex + 3);
-    children.push_back(tempBoard);
-    return true;
-}
-
-bool board::moveLeft() {
-    if (zeroIndex % 3 == 0)
-        return false;
-    
-    auto temp = puzzle;
-    swap(temp[zeroIndex], temp[zeroIndex - 1]);
-    
-    board* tempBoard = new board(temp, zeroIndex - 1);
-    children.push_back(tempBoard);
-    return true;
-}
-
-bool board::moveRight() {
-    if (zeroIndex % 3 >= 2)
-        return false;
-    
-    auto temp = puzzle;
-    swap(temp[zeroIndex], temp[zeroIndex + 1]);
-    
-    board* tempBoard = new board(temp, zeroIndex + 1);
+    board* tempBoard = new board(temp, zeroIndex + modDistance);
     children.push_back(tempBoard);
     return true;
 }
 
 void board::validMoves() {
-    if (moveUp())
+    if (moveType(upMod))
         cout << "zero can be moved up" << endl;
     
-    if (moveRight())
+    if (moveType(rightMod))
         cout << "zero can be moved right" << endl;
     
-    if (moveDown())
+    if (moveType(downMod))
         cout << "zero can be moved down" << endl;
     
-    if (moveLeft())
+    if (moveType(leftMod))
         cout << "zero can be moved left" << endl;
     
     cout << endl;

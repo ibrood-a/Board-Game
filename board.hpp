@@ -12,8 +12,6 @@
 #include <iostream>
 using namespace std;
 
-// more than likely will need this later
-
 class board {
 public:
     int zeroIndex;
@@ -36,15 +34,9 @@ public:
     int calculateInversions();
     // checks to see if inversions is even or odd
     bool isBoardSolvable();
-    // can 0 be moved up?
-    bool moveUp();
-    // can 0 be moved down?
-    bool moveDown();
-    // can 0 be moved left?
-    bool moveLeft();
-    // can zero be moved right?
-    bool moveRight();
-    // finds and lists all the valid moves
+    // can 0 be moved xxx?
+    bool moveType(int modDistance);
+    // print valid moves
     void validMoves();
     // count number of moves to solve it
     int movesToSolve = 0;
