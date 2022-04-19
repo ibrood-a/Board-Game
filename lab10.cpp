@@ -9,18 +9,30 @@ using namespace std;
 board testBoard, testBoard2;
 
 int main( int argc, char** argv ) {
-	string arg1( argv[ 1 ] ); // string containing the value of command line
+	string testState( argv[ 1 ] ); // string containing value 1 of command line
+    string testState2( argv[ 2 ] ); // string containing value 2 of command line
 
-	// add all the elements to the vector
-    testBoard.addElements( stoi( arg1 ) );
+	// add all the elements
+    testBoard.addElements( stoi( testState ) );
+    testBoard2.addElements( stoi( testState2 ) );
 
-    // debugging purposes
+    // print the board
     testBoard.print( );
-    
+    // see what moves are valid
     testBoard.validMoves();
     
     if (testBoard.isBoardSolvable())
-        cout << "Solvable with " << testBoard.movesToSolve << " moves" << endl;
+        cout << "This board is solvable" << endl << endl;
+    else
+        cout << "This board is not solvable" << endl << endl;
+    
+    // print second board
+    testBoard2.print( );
+    // test valid moves here too
+    testBoard2.validMoves();
+    
+    if (testBoard2.isBoardSolvable())
+        cout << "This board is solvable" << endl << endl;
     else
         cout << "This board is not solvable" << endl << endl;
     

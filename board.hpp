@@ -38,9 +38,10 @@ public:
     bool moveType(int modDistance);
     // print valid moves
     void validMoves();
-    // count number of moves to solve it
-    int movesToSolve = 0;
+    // solve the puzzle and print each step
+    void solvePuzzle(board* goalBoard);
 
-}; extern board boardHelpers;
+};
+extern board boardHelpers;
 
 #endif /* boardFunctions_h */

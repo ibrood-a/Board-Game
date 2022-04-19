@@ -46,8 +46,6 @@ void board::addElements( int puzzleIn ) {
         // push last tile onto stack
         puzzle.push_front( make_pair(curDigit, column) );
         
-        this->thisIndex = currentIndex;
-        
         if (curDigit == 0)
             this->zeroIndex = currentIndex;
         
@@ -78,7 +76,6 @@ int board::calculateInversions() {
         }
     }
     
-    movesToSolve = inversionCount;
     return inversionCount;
 }
 
@@ -114,6 +111,8 @@ bool board::moveType(int modDistance) {
     swap(temp[zeroIndex], temp[zeroIndex + modDistance]);
     
     board* tempBoard = new board(temp, zeroIndex + modDistance);
+    tempBoard->parent = this;
+    
     children.push_back(tempBoard);
     return true;
 }
@@ -130,6 +129,8 @@ void board::validMoves() {
     
     if (moveType(leftMod))
         cout << "zero can be moved left" << endl;
-    
-    cout << endl;
+}
+
+void board::solvePuzzle(board* goalBoard) {
+
 }
