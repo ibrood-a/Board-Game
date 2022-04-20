@@ -31,12 +31,13 @@ void board::addElements( int puzzleIn ) {
     int row = 2;
     int column = 2;
     int currentIndex = 8;
-    
+    int puzzleSize = to_string(puzzleIn).length();
+   
     // storage container for puzzle
     deque<pair<int, int>> puzzle;
     
     // as long as input still has something
-    while ( puzzleIn > 0 ) {
+    for ( int i = 0; i < puzzleSize; i++) {
         // get the last digit
         int curDigit = puzzleIn % 10;
         
@@ -58,6 +59,13 @@ void board::addElements( int puzzleIn ) {
         }
     }
     
+    // ghetto fix for if starts with zero
+    // problem comes from command line argument being int
+    // if you put 01234..... it converts it to 1234....
+    // fix this later instead of hardcoding this...
+    if (puzzleSize == 8)
+        puzzle.push_front( make_pair(0, column) );
+     
     this->puzzle = puzzle;
 }
 
