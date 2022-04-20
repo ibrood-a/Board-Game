@@ -9,12 +9,10 @@ using namespace std;
 board testBoard, testBoard2;
 
 int main( int argc, char** argv ) {
-	string testState( argv[ 1 ] ); // string containing value 1 of command line
-    string testState2( argv[ 2 ] ); // string containing value 2 of command line
 
 	// add all the elements
-    testBoard.addElements( stoi( testState ) );
-    testBoard2.addElements( stoi( testState2 ) );
+    testBoard.addElements( argv[ 1 ] );
+    testBoard2.addElements( argv[ 2 ] );
 
     // print the board
     testBoard.print( );

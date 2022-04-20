@@ -29,7 +29,7 @@ public:
     // print out the vector as a 3x3 grid
     void print( );
     // function used to convert a single number into a vector of size 9 with single digit values
-    void addElements( int puzzle );
+    void addElements( char* argv );
     // count the number of inversions needed to solve (even is solvable odd is not)
     int calculateInversions();
     // checks to see if inversions is even or odd
@@ -42,6 +42,5 @@ public:
     void solvePuzzle(board* goalBoard);
 
 };
-extern board boardHelpers;
 
 #endif /* boardFunctions_h */

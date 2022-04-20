@@ -6,6 +6,9 @@
 //
 
 #include "board.hpp"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 int upMod = -3;
 int downMod = 3;
@@ -25,47 +28,35 @@ void board::print() {
     cout << endl;
 }
 
-void board::addElements( int puzzleIn ) {
+void board::addElements( char* argv ) {
 
     // starting from end when reading int
-    int row = 2;
-    int column = 2;
-    int currentIndex = 8;
-    int puzzleSize = to_string(puzzleIn).length();
-   
+    int row = 0;
+    int column = 0;
+    
     // storage container for puzzle
     deque<pair<int, int>> puzzle;
     
     // as long as input still has something
-    for ( int i = 0; i < puzzleSize; i++) {
-        // get the last digit
-        int curDigit = puzzleIn % 10;
+    for ( int i = 0; i < 9; i++) {
         
-        // remove last tile
-        puzzleIn /= 10;
+        // get the last digit
+        int curDigit = (int)(argv[i] - '0');
         
         // push last tile onto stack
-        puzzle.push_front( make_pair(curDigit, column) );
+        puzzle.push_back( make_pair(curDigit, column) );
         
         if (curDigit == 0)
-            this->zeroIndex = currentIndex;
+            this->zeroIndex = i;
         
         // do it in reverse since reading from the back
-        column--;
-        currentIndex--;
-        if (column < 0) {
-            row--;
-            column = 2;
+        column++;
+        if (column > 2) {
+            row++;
+            column = 0;
         }
     }
     
-    // ghetto fix for if starts with zero
-    // problem comes from command line argument being int
-    // if you put 01234..... it converts it to 1234....
-    // fix this later instead of hardcoding this...
-    if (puzzleSize == 8)
-        puzzle.push_front( make_pair(0, column) );
-     
     this->puzzle = puzzle;
 }
 
