@@ -43,18 +43,26 @@ void board::addElements( char* argv ) {
         // get the last digit
         int curDigit = (int)(argv[i] - '0');
         
-        // push last tile onto stack
+        if (numberFound[curDigit]) {
+            duplicateNumbers = true;
+            cout << "duplicate numbers in the puzzle" << endl << endl;
+            break;
+        }
+        
+        // push current item to back of puzzle
         puzzle.push_back( make_pair(curDigit, column) );
         
         if (curDigit == 0)
             this->zeroIndex = i;
         
-        // do it in reverse since reading from the back
+        // for printing later on
         column++;
         if (column > 2) {
             row++;
             column = 0;
         }
+        
+        numberFound[curDigit] = true;
     }
     
     this->puzzle = puzzle;

@@ -16,6 +16,9 @@ class board {
 public:
     int zeroIndex;
     int thisIndex;
+    bool numberFound[9];
+    bool duplicateNumbers;
+    
     board* parent;
     deque<board*> children;
     deque<pair<int, int>> puzzle;

@@ -14,6 +14,9 @@ int main( int argc, char** argv ) {
     testBoard.addElements( argv[ 1 ] );
     testBoard2.addElements( argv[ 2 ] );
 
+    if (testBoard.duplicateNumbers || testBoard2.duplicateNumbers)
+        return 0;
+    
     // print the board
     testBoard.print( );
     // see what moves are valid
@@ -34,4 +37,5 @@ int main( int argc, char** argv ) {
     else
         cout << "This board is not solvable" << endl << endl;
     
+    return 0;
 }
