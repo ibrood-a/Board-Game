@@ -140,5 +140,14 @@ void board::validMoves() {
 }
 
 void board::solvePuzzle(board* goalBoard) {
-
+     /**
+      step 1: create a way to store all of the puzzles we have tested
+      step 2: create a way to see if we have tested a puzzle before adding it to a list of puzzles to test
+      step 3: generate all posibilties based on the current puzzle we have
+      step 4: test those posibilities to see if they are the correct one
+      step 5: if we dont have any branch off of these tables and generate posibilities for each
+      step 6: use function from step 2 to see if we have tested any of the newly generated puzzles
+      step 7: compare to see if we have the correct goal
+      step 8: repeat.
+    */
 }
