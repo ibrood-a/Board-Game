@@ -86,9 +86,12 @@ int board::calculateInversions() {
     return inversionCount;
 }
 
-bool board::isBoardSolvable() {
+void board::isBoardSolvable() {
     // the puzzle is solvable if the number of inversions is even
-    return (calculateInversions() % 2) == 0;
+    if (calculateInversions() % 2 == 0)
+        cout << "This board is solvable" << endl << endl;
+    else
+        cout << "This board is not solvable" << endl << endl;
 }
 
 bool board::moveType(int modDistance) {

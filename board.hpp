@@ -36,7 +36,7 @@ public:
     // count the number of inversions needed to solve (even is solvable odd is not)
     int calculateInversions();
     // checks to see if inversions is even or odd
-    bool isBoardSolvable();
+    void isBoardSolvable();
     // can 0 be moved xxx?
     bool moveType(int modDistance);
     // print valid moves

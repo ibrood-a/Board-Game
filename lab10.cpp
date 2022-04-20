@@ -14,6 +14,7 @@ int main( int argc, char** argv ) {
     testBoard.addElements( argv[ 1 ] );
     testBoard2.addElements( argv[ 2 ] );
 
+    // if there are duplicate numbers then we dont want to test it
     if (testBoard.duplicateNumbers || testBoard2.duplicateNumbers)
         return 0;
     
@@ -21,21 +22,15 @@ int main( int argc, char** argv ) {
     testBoard.print( );
     // see what moves are valid
     testBoard.validMoves();
-    
-    if (testBoard.isBoardSolvable())
-        cout << "This board is solvable" << endl << endl;
-    else
-        cout << "This board is not solvable" << endl << endl;
+    // check if it is solvable
+    testBoard.isBoardSolvable();
     
     // print second board
     testBoard2.print( );
     // test valid moves here too
     testBoard2.validMoves();
-    
-    if (testBoard2.isBoardSolvable())
-        cout << "This board is solvable" << endl << endl;
-    else
-        cout << "This board is not solvable" << endl << endl;
+    // check if it is solvable
+    testBoard2.isBoardSolvable();
     
     return 0;
 }
