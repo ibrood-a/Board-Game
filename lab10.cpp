@@ -14,23 +14,18 @@ int main( int argc, char** argv ) {
     testBoard.addElements( argv[ 1 ] );
     testBoard2.addElements( argv[ 2 ] );
 
-    // if there are duplicate numbers then we dont want to test it
-    if (testBoard.duplicateNumbers || testBoard2.duplicateNumbers)
-        return 0;
-    
     // print the board
     testBoard.print( );
     // see what moves are valid
-    testBoard.validMoves();
+    testBoard.computeValidMoves();
     // check if it is solvable
     testBoard.isBoardSolvable();
     
     // print second board
     testBoard2.print( );
     // test valid moves here too
-    testBoard2.validMoves();
+    testBoard2.computeValidMoves();
     // check if it is solvable
     testBoard2.isBoardSolvable();
-    
     return 0;
 }

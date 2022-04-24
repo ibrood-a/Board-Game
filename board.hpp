@@ -15,16 +15,13 @@ using namespace std;
 class board {
 public:
     int zeroIndex;
-    int thisIndex;
-    bool numberFound[9];
-    bool duplicateNumbers;
     
     board* parent;
-    deque<board*> children;
-    deque<pair<int, int>> puzzle;
+    deque<int> puzzle;
+
+    board() {}
     
-    board() { }
-    board(deque<pair<int, int>> tempPuzzle, int zeroIn) {
+    board(deque<int> tempPuzzle, int zeroIn) {
         zeroIndex = zeroIn;
         puzzle = tempPuzzle;
     }
@@ -33,16 +30,16 @@ public:
     void print( );
     // function used to convert a single number into a vector of size 9 with single digit values
     void addElements( char* argv );
+    
+    // checks to see if inversions is even or odd
+    bool isBoardSolvable();
     // count the number of inversions needed to solve (even is solvable odd is not)
     int calculateInversions();
-    // checks to see if inversions is even or odd
-    void isBoardSolvable();
+    
     // can 0 be moved xxx?
     bool moveType(int modDistance);
     // print valid moves
-    void validMoves();
-    // solve the puzzle and print each step
-    void solvePuzzle(board* goalBoard);
+    void computeValidMoves();
 
 };
 
