@@ -40,7 +40,7 @@ public:
     int calculateInversions();
     
     // can 0 be moved xxx?
-    bool moveType(int modDistance, bool addChild = false);
+    bool moveType(int moveDistance, bool solvingPuzzle);
     // print valid moves
     void computeValidMoves(bool createNewChild);
     // solve the puzzle and print each step

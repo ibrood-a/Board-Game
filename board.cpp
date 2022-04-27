@@ -77,24 +77,24 @@ bool board::isBoardSolvable() {
     return calculateInversions() % 2 == 0;
 }
 
-// modDistance is a value from moveMod
-// addChild determines
-bool board::moveType(int modDistance, bool solvingPuzzle) {
+// moveDistance is a value from moveMod
+// solvingPuzzle determines
+bool board::moveType(int moveDistance, bool solvingPuzzle) {
 
     // cant move up in first row 0-2
-    if (modDistance == moveMod::up && zeroIndex <= 2)
+    if (moveDistance == moveMod::up && zeroIndex <= 2)
         return false;
    
     // cant move down in bottom row 6-8
-    if (modDistance == moveMod::down && zeroIndex >= 6)
+    if (moveDistance == moveMod::down && zeroIndex >= 6)
         return false;
    
     // cant move left if in first column (modulo 3 = 0)
-    if (modDistance == moveMod::left && zeroIndex % 3 == 0)
+    if (moveDistance == moveMod::left && zeroIndex % 3 == 0)
         return false;
     
     // cant move right if in last column (modulo 3 = 2)
-    if (modDistance == moveMod::right && zeroIndex % 3 == 2)
+    if (moveDistance == moveMod::right && zeroIndex % 3 == 2)
         return false;
 
     // create new puzzle and swap
