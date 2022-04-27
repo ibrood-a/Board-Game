@@ -14,7 +14,10 @@ using namespace std;
 
 class board {
 public:
+    int zeroRow;
+    int zeroCol;
     int zeroIndex;
+    int movesTaken;
     
     board* parent;
     deque<int> puzzle;
@@ -37,9 +40,11 @@ public:
     int calculateInversions();
     
     // can 0 be moved xxx?
-    bool moveType(int modDistance);
+    bool moveType(int modDistance, bool addChild = false);
     // print valid moves
-    void computeValidMoves();
+    void computeValidMoves(bool createNewChild);
+    // solve the puzzle and print each step
+    void solvePuzzle(board goalBoard);
 
 };
 
