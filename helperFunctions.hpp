@@ -24,6 +24,7 @@ extern deque<board*> checkedBoards;
 
 string prefix(int col);
 string postfix(int col);
+string directionStr(int m);
 
 bool previouslyTested(deque<int> testBoard);
 

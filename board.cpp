@@ -77,8 +77,8 @@ bool board::isBoardSolvable() {
     return calculateInversions() % 2 == 0;
 }
 
-// moveDistance is a value from moveMod
-// solvingPuzzle determines
+// modDistance is a value from moveMod
+// addChild determines
 bool board::moveType(int moveDistance, bool solvingPuzzle) {
 
     // cant move up in first row 0-2
@@ -97,80 +97,77 @@ bool board::moveType(int moveDistance, bool solvingPuzzle) {
     if (moveDistance == moveMod::right && zeroIndex % 3 == 2)
         return false;
 
-    // create new puzzle and swap
-
+    // create new puzzle using the current board but
+    // std::swap the zeroIndex and the index zero is being moved to
     
-    // if we arent solving or its been tested
-    // return true (we dont want to add child here)
-
     
-    // create the new board using updated zero pos
+    // if we arent solving the puzzle or we have previously tested this just return
+    // if (!solvingPuzzle || previouslyTested(tempPuzzle))
+    //    return true;
+    
+    
+    // create the new board using updated board (update zero index too)
     
     
     // set the parent and add it to list to test
-    // increment the moves taken
+    // increment moves taken
     
     
     // add to boards we need to test
-
+    
     
     // free memory
-    
     
     return true;
 }
 
 // addChild is used to determine if we are solving
 // or just finding all directions we can move zero
-void board::computeValidMoves(bool solvingPuzzle) {
-    // if we can move and we arent solving puzzle
-    if (moveType(moveMod::up, solvingPuzzle) && solvingPuzzle == false)
-        cout << "zero can be moved up" << endl;
+void board::printValidMoves() {
     
-    if (moveType(moveMod::right, solvingPuzzle) && solvingPuzzle == false)
-        cout << "zero can be moved right" << endl;
+    // loop thru all the directions (up, down, left, right) and print each that can be done
+    for (auto moveDir : {moveMod::up, moveMod::down, moveMod::right, moveMod::left}) {
+        // if this is a valid move print this to console
+        if (moveType(moveDir, false))
+            cout << "zero can be moved " << directionStr(moveDir) << endl;
+    }
     
-    if (moveType(moveMod::down, solvingPuzzle) && solvingPuzzle == false)
-        cout << "zero can be moved down" << endl;
-    
-    if (moveType(moveMod::left, solvingPuzzle) && solvingPuzzle == false)
-        cout << "zero can be moved left" << endl;
-    
-    if (solvingPuzzle == false)
-        cout << endl;
+    cout << endl;
 }
 
 // recursively prints the path backwards
 void printPath(board* b) {
-    // initial state
-    if (b == nullptr)
-        return;
+    // if b is nullptr return because this is the starting board
     
     // print the current step
     
-    // recursivly call printPath using b's parent board
+    // recursivly call using b's parent
 }
 
 void board::solvePuzzle(board goalBoard) {
 
     // add the initial board
     
-    // until we run out of boards to test
+    // keep looping until we run out of boards to test
     {
-        // store the front puzzle thisBoard
-        // remove the front puzzle from testBoards
         
-        // store record of testing thisBoard
+        // store the board in the front of testBoards
         
-        // if we found the goal state with this board
+        // remove the board from the front of test boards
+        
+        // store a record that we are testing this board
+        
+        // if this board matches the goal board
         {
             // print the path
             
             // clear up the memory
-            // return since puzzle is solved
+            
+            // we found the solution so just
+            // return;
         }
         
-        // compute moves and add the children
+        // loop thru all possible valid moves and add the valid ones to be tested
     }
     
     return;

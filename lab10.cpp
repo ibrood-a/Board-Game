@@ -17,14 +17,14 @@ int main( int argc, char** argv ) {
     // print the board
     testBoard.print( );
     // see what moves are valid
-    testBoard.computeValidMoves(false);
+    testBoard.printValidMoves();
     // check if it is solvable
     testBoard.isBoardSolvable();
     
     // print second board
     testBoard2.print( );
     // test valid moves here too
-    testBoard2.computeValidMoves(false);
+    testBoard2.printValidMoves();
     // check if it is solvable
     testBoard2.isBoardSolvable();
     

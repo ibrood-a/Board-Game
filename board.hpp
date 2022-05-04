@@ -14,8 +14,6 @@ using namespace std;
 
 class board {
 public:
-    int zeroRow;
-    int zeroCol;
     int zeroIndex;
     int movesTaken;
     
@@ -40,9 +38,9 @@ public:
     int calculateInversions();
     
     // can 0 be moved xxx?
-    bool moveType(int moveDistance, bool solvingPuzzle);
+    bool moveType(int modDistance, bool addChild = false);
     // print valid moves
-    void computeValidMoves(bool createNewChild);
+    void printValidMoves();
     // solve the puzzle and print each step
     void solvePuzzle(board goalBoard);
 
