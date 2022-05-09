@@ -13,10 +13,10 @@
 using namespace std;
 
 enum moveMod {
-    up = -3,
-    right = 1,
-    down = 3,
-    left = -1,
+	up = -3,
+	right = 1,
+	down = 3,
+	left = -1,
 };
 
 extern deque<board*> testBoards;
@@ -28,6 +28,6 @@ string directionStr(int m);
 
 bool previouslyTested(deque<int> testBoard);
 
-bool operator==( const deque<int> lhs, const deque<int> rhs );
+bool operator==(const deque<int> lhs, const deque<int> rhs);
 
 #endif /* helperFunctions_h */
