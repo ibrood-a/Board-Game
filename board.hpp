@@ -14,35 +14,46 @@ using namespace std;
 
 class board {
 public:
-    int zeroIndex;
-    int movesTaken;
-    
-    board* parent;
-    deque<int> puzzle;
+	int moveDir;
+	int zeroIndex;
+	int movesTaken;
 
-    board() {}
-    
-    board(deque<int> tempPuzzle, int zeroIn) {
-        zeroIndex = zeroIn;
-        puzzle = tempPuzzle;
-    }
-    
-    // print out the vector as a 3x3 grid
-    void print( );
-    // function used to convert a single number into a vector of size 9 with single digit values
-    void addElements( char* argv );
-    
-    // checks to see if inversions is even or odd
-    bool isBoardSolvable();
-    // count the number of inversions needed to solve (even is solvable odd is not)
-    int calculateInversions();
-    
-    // can 0 be moved xxx?
-    bool moveType(int modDistance, bool addChild = false);
-    // print valid moves
-    void printValidMoves();
-    // solve the puzzle and print each step
-    void solvePuzzle(board goalBoard);
+	board* parent;
+	deque<int> puzzle;
+
+	board(char* argv) {
+		for (int i = 0; i < 9; i++) {
+			// get the value for index i
+			int curDigit = argv[i] - '0';
+
+			// store all info needed for zero
+			if (curDigit == 0)
+				this->zeroIndex = i;
+
+			// push current item to back of puzzle
+			puzzle.push_back(curDigit);
+		}
+	}
+
+	board(deque<int> tempPuzzle, int zeroIn) {
+		zeroIndex = zeroIn;
+		puzzle = tempPuzzle;
+	}
+
+	// print out the vector as a 3x3 grid
+	void print();
+
+	// checks to see if inversions is even or odd
+	bool isBoardSolvable();
+	// count the number of inversions needed to solve (even is solvable odd is not)
+	int calculateInversions();
+
+	// print valid moves
+	void printValidMoves();
+	// can 0 be moved xxx?
+	bool moveType(int moveDirection, bool addChild = false);
+	// solve the puzzle and print each step
+	void solvePuzzle(board goalBoard);
 
 };
 
