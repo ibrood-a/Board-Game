@@ -22,6 +22,10 @@ public:
 	deque<int> puzzle;
 
 	board(char* argv) {
+		moveDir = 0;
+		zeroIndex = 0;
+		movesTaken = 0;
+		parent = nullptr;
 		for (int i = 0; i < 9; i++) {
 			// get the value for index i
 			int curDigit = argv[i] - '0';
@@ -36,6 +40,9 @@ public:
 	}
 
 	board(deque<int> tempPuzzle, int zeroIn) {
+		moveDir = 0;
+		movesTaken = 0;
+		parent = nullptr;
 		zeroIndex = zeroIn;
 		puzzle = tempPuzzle;
 	}
