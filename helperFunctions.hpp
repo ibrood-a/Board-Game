@@ -8,7 +8,12 @@
 #ifndef helperFunctions_h
 #define helperFunctions_h
 #include <map>
+#include <stack>
 #include <deque>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "board.hpp"
 
 using namespace std;
@@ -27,6 +32,9 @@ extern map<int, int> moveModifier;
 // storage containers for boards to test and boards we have tested
 extern deque<board*> testBoards;
 extern deque<board*> checkedBoards;
+
+// reverse the steps for printing
+extern stack<board*> solveProcess;
 
 // function that outputs the prefix for the value that needs to be printed 
 string prefix(int col);

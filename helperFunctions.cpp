@@ -10,6 +10,8 @@
 deque<board*> testBoards;
 deque<board*> checkedBoards;
 
+stack<board*> solveProcess;
+
 string prefix(int col) {
 	switch (col) {
 	case 0:

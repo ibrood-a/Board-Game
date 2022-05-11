@@ -61,7 +61,9 @@ public:
 	bool moveType(int moveDirection, bool addChild = false);
 	// solve the puzzle and print each step
 	void solvePuzzle(board goalBoard);
-
+    
+    void buildPath(board* b);
+    void printPath();
 };
 
 #endif /* boardFunctions_h */

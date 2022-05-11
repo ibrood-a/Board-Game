@@ -5,11 +5,6 @@
 //  Created by Jacob Kennedy on 4/14/22.
 //
 
-#include <queue>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "board.hpp"
 #include "helperFunctions.hpp"
 
@@ -125,23 +120,45 @@ void board::printValidMoves() {
 	cout << endl;
 }
 
+// reverses the order of the steps
+void board::buildPath(board* b) {
+    // initial state
+    if (b == nullptr)
+        return;
+
+    // add to stack to reverse
+    solveProcess.push(b);
+    
+    // recursivly call using b's parent
+    buildPath(b->parent);
+}
+
 // recursively prints the path backwards
-void printPath(board* b) {
-	// initial state
-	if (b == nullptr)
-		return;
-
-	// print the current step
-	cout << "step " << b->movesTaken;
-	if (b->parent != nullptr) // only show step if it isnt initial board
-		cout << " was achieved by moving " << directionStr(b->moveDir) << endl;
-	else
-		cout << endl;
-
-	b->print();
-
-	// recursivly call using b's parent
-	printPath(b->parent);
+void board::printPath() {
+    
+    // run thru the whole stack
+    while (!solveProcess.empty()) {
+        
+        // get the next step
+        auto step = solveProcess.top();
+        
+        // remove this step
+        solveProcess.pop();
+        
+        // print the current step
+        if (step->movesTaken == 0)
+            cout << "initial state";
+        else
+            cout << "step " << step->movesTaken;
+        
+        // only show step if it isnt initial board
+        if (step->parent != nullptr)
+            cout << " was achieved by moving " << directionStr(step->moveDir) << endl;
+        else
+            cout << endl;
+        
+        step->print();
+    }
 }
 
 void board::solvePuzzle(board goalBoard) {
@@ -159,9 +176,10 @@ void board::solvePuzzle(board goalBoard) {
 
 		// found the goal state with this board
 		if (min->puzzle == goalBoard.puzzle) {
-			// print the path
-			printPath(min);
-
+            // build the stack so we dont print steps backwards
+            min->buildPath(min);
+            min->printPath();
+            
 			// clear up the memory
 			testBoards.clear();
 			checkedBoards.clear();
